@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+    
+{% endblock style %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="container py-5">
+<div class="row" id="form-row">
+  <div class="col">
+    <div class="card bg-dark">
+      <div class="card-body">
+        <h2 class="text-center">User Information <h5>Hello {{cookie_name}}</h5></h2>
+        <form action="" method="post" autocomplete="off" novalidate enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="row">
+            <div class="col-sm-4">
+              {{form.username|as_crispy_field}}   
+            </div>
+            <div class="col-sm-4">
+              {{form.email|as_crispy_field}}    
+            </div>
+            <div class="col-sm-4">
+              {{form.first_name|as_crispy_field}}   
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4">
+              {{form.last_name|as_crispy_field}}    
+            </div>
+            <div class="col-sm-4">
+              {{form.password1|as_crispy_field}}   
+            </div>
+            <div class="col-sm-4">
+              {{form.password2|as_crispy_field}}   
+            </div>
+          </div>
+            <div class="row">
+            <div class="col-sm-4 bg-dark text-dark">
+              {{info_form.gender|as_crispy_field}}   
+            </div>
+            <div class="col-sm-4">
+              {{info_form.mobile|as_crispy_field}}   
+            </div>
+            <div class="col-sm-4">
+              {{info_form.education|as_crispy_field}}   
+            </div>
+          </div>
+          <!-- <div class="row"> -->
+          <div class="row">  
+            <div class="col">
+              {{info_form.city|as_crispy_field}}   
+            </div>
+          
+            <div class="col">
+              {{info_form.country|as_crispy_field}}   
+            </div>
+            <div class="col">
+              {{info_form.profile|as_crispy_field}}   
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              {{info_form.Biography|as_crispy_field}}   
+            </div>
+          </div>
+          <input type="submit" value="Submit" class="btn btn-success">
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+{% endblock content %} 

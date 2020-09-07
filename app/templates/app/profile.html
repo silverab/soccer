@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="container py-5">
+<div class="row" id="form-row-login">
+  <div class="col">
+    <div class="card bg-dark">
+      <div class="card-body">
+        <h2 class="text-center">User Profile</h2>
+         <header class="header">
+            <div class="container">
+              <div class="teacher-name">
+                <div class="row">
+                <div class="col-sm-9 bg-dark text-white">
+                  <h2>Username: <strong class="text-capitalize">{{user.username}}</strong></h2>
+                </div>
+                <div class="col-sm-3">
+                  <div class="button pull-right">
+                    <!-- <a href="{{user.id}}" class="btn btn-outline-success btn-sm">Edit Profile <i class="fa fa-pencil"></i></a> -->
+                  </div>
+                </div>
+                </div>
+              </div>
+
+              <div class="row" style="margin-top:20px;">
+                <div class="col-sm-3"> 
+                  <a href="#">
+                    <img class="rounded-circle img-responsive" src="{{user.userinfo.profile.url}}" height="200px" width="200px" alt="Rick" >
+                  </a>
+
+                </div>
+
+                <div class="col-sm-6"> 
+                  <h5> {{user.first_name}} {{user.last_name}}</h5>
+                  <strong>Email:<h5>{{user.email}}</h5></strong>
+                  
+                  <strong>Education:<h5>{{user.userinfo.education}}</h5></strong>
+                  <strong>City:<h5>{{user.userinfo.city}}</h5></strong>
+                  <strong>Country:<h5>{{user.userinfo.country}}</h5></strong>
+                </div>
+
+                <div class="col-sm-3 text-center social">
+                  <span class="number">Phone: &nbsp;<strong>{{user.userinfo.mobile}}</strong></span>
+                  <div class="button-email">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </header>
+            <div class="container">
+            <div class="row">
+                  <div class="col-sm-12">
+                    <div class="card card-block text-xs-left p-5 bg-dark text-white">
+                      <h5><i class="fa fa-user fa-fw"></i>Biography</h5>
+                        <p>{{user.userinfo.Biography}}</p> 
+                    </div>
+                  </div>
+                </div>
+          </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block blogactive %} active {% endblock blogactive %}
+{% block content %}
+
+<div class="hero overlay" style="background-image: url('/static/images/pakistan_football.jpg');">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-5 mx-auto text-center">
+        <h1 class="text-white">FIFA News</h1>
+        <p>To keep update with FIFA News and events don't forget to visit Blog Page.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="container site-section">
+  <div class="row">
+    <div class="col-6 title-section">
+      <h2 class="heading">Latest Blog</h2>
+    </div>
+  </div>
+  <div class="row">
+    {% for new in news %}
+    <div class="col-lg-4 mb-4">
+      <div class="custom-media d-block">
+        <div class="img mb-4">
+          <a href="{{new.get_absolute_url}}"><img src="{{new.feature_image.url}}" alt="Image" class="img-fluid"></a>
+        </div>
+        <div class="text">
+          <span class="meta">{{new.date}}
+          
+          <!-- </span>&nbsp;&nbsp;|&nbsp; <span>{{new.admin}}</span> -->
+
+          <hr class="bg-white">
+          <h3 class="mb-4"><a href="{{new.get_absolute_url}}">{{new.title}}</a></h3>
+          <p>{{new.description|truncatewords:20}}</p>
+          <p><a href="{{new.get_absolute_url}}">Read more</a></p>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="col-lg-7 text-center">
+      <div class="custom-pagination">
+        {% for num in news.paginator.page_range %}
+
+          {% if news.number == num %}
+        <a href="?page={{num}}"><span>{{num}}</span></a>
+          {% elif num > news.number|add:'-3' and num < news.number|add:'3' %}
+          <a href="?page={{num}}">{{num}}</a>
+          {% endif %}
+
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

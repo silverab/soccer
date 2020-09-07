@@ -1,0 +1,270 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block playersactive %} active {% endblock playersactive %}
+
+{% block content %}
+<div class="hero overlay" style="background-image: url('{{team.team_img.url}}');">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-9 mx-auto text-center">
+        <h1 class="text-white">{{team.name}}</h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+<nav class="navbar navbar-expand-lg bg-dark text-white">
+	<div class="container">
+	  <span class="navbar-brand"><img src="{{team.flag.url}}" alt="Logo" height="50px" width="100px;">&nbsp;{{team.name}}</span>
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+	    <span class="navbar-toggler-icon"></span>
+	  </button>
+  </div>
+</nav>
+
+<div class="site-section bg-dark">
+  <div class="container">
+  <div class="row">
+      <div class="col-6 title-section">
+        <h2 class="heading">Matches</h2>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="widget-next-match">
+          <div class="widget-title">
+            <h3>Next Match</h3>
+          </div>
+          <div class="widget-body mb-3">
+            <div class="widget-vs">
+              <div class="d-flex align-items-center justify-content-around justify-content-between w-100">
+                <div class="team-1 text-center">
+                  <img src="{% static 'images/logo_1.png' %}" alt="Image">
+                  <h3>Football League</h3>
+                </div>
+                <div>
+                  <span class="vs"><span>VS</span></span>
+                </div>
+                <div class="team-2 text-center">
+                  <img src="{% static 'images/logo_2.png' %}" alt="Image">
+                  <h3>Soccer</h3>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="text-center widget-vs-contents mb-4">
+            <h4>World Cup League</h4>
+            <p class="mb-5">
+              <span class="d-block">December 20th, 2020</span>
+              <span class="d-block">9:30 AM GMT+0</span>
+              <strong class="text-primary">New Euro Arena</strong>
+            </p>
+
+            <div id="date-countdown2" class="pb-1"></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="widget-next-match">
+          <table class="table custom-table">
+            <thead>
+              
+              <tr>
+                <th>#</th>
+                <th>Country</th>
+                <th>MP</th>
+                <th>W</th>
+                <th>D</th>
+                <th>L</th>
+                <th>PTS</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for team in teams %}
+              <tr>
+                <td>{{forloop.counter}}</td>
+                <td><strong class="text-white">{{team.country.name}}</strong></td>
+                <td>{{team.match_play}}</td>
+                <td>{{team.won}}</td>
+                <td>{{team.draw}}</td>
+                <td>{{team.lost}}</td>
+                <td>{{team.pts}}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+<div class="container site-section">
+  <div class="row">
+    <div class="col-6 title-section">
+      <h2 class="heading">Latest Blog</h2>
+    </div>
+  </div>
+  <div class="row">
+    {% for new in news %}
+    <div class="col-lg-4 mb-4">
+      <div class="custom-media d-block">
+        <div class="img mb-4">
+          <a href="{{new.get_absolute_url}}"><img src="{{new.feature_image.url}}" alt="Image" class="img-fluid"></a>
+          <hr class="bg-white">
+        </div>
+        <div class="text">
+          <h3 class="mb-4"><a href="{{new.get_absolute_url}}">{{new.title}}</a></h3>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  
+<hr class="bg-white">
+
+    <div class="row">
+      <div class="col-6 title-section">
+        <h2 class="heading">Players</h2>
+      </div>
+      <div class="col-6">
+        <h2 class="heading">{{team.name}}</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+     <table class="table table-dark">
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Number</th>
+          <th scope="col">Designation</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for player in players %}
+        <tr>
+          <td>{{player.name}}</td>
+          <td><button class="btn btn-primary btn-sm"> {{player.number}}</button></td>
+          <td>{{player.designation}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+      </div>
+    </div>
+  </div>
+</div> <!-- .site-section -->
+
+
+
+<div class="site-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-6 title-section">
+        <h2 class="heading">Star Players / Videos</h2>
+      </div>
+      <div class="col-6 text-right">
+        <div class="custom-nav">
+        <a href="#" class="js-custom-prev-v2"><span class="icon-keyboard_arrow_left"></span></a>
+        <span></span>
+        <a href="#" class="js-custom-next-v2"><span class="icon-keyboard_arrow_right"></span></a>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="owl-4-slider owl-carousel">
+      <div class="item">
+        <div class="video-media">
+          <img src="{% static 'images/img_1.jpg' %}" alt="Image" class="img-fluid">
+          <a href="https://vimeo.com/139714818" class="d-flex play-button align-items-center" data-fancybox>
+            <span class="icon mr-3">
+              <span class="icon-play"></span>
+            </span>
+            <div class="caption">
+              <span class="meta">#10 / Forward</span>
+              <h3 class="m-0">Phillip Hobbs</h3>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div class="item">
+        <div class="video-media">
+          <img src="{% static 'images/img_2.jpg' %}" alt="Image" class="img-fluid">
+          <a href="https://vimeo.com/139714818" class="d-flex play-button align-items-center" data-fancybox>
+            <span class="icon mr-3">
+              <span class="icon-play"></span>
+            </span>
+            <div class="caption">
+              <span class="meta">#7 / Forward</span>
+              <h3 class="m-0">Garry Norris</h3>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div class="item">
+        <div class="video-media">
+          <img src="{% static 'images/img_3.jpg' %}" alt="Image" class="img-fluid">
+          <a href="https://vimeo.com/139714818" class="d-flex play-button align-items-center" data-fancybox>
+            <span class="icon mr-3">
+              <span class="icon-play"></span>
+            </span>
+            <div class="caption">
+              <span class="meta">#4 / Forward</span>
+              <h3 class="m-0">Romolu Harper</h3>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="video-media">
+          <img src="{% static 'images/img_1.jpg' %}" alt="Image" class="img-fluid">
+          <a href="https://vimeo.com/139714818" class="d-flex play-button align-items-center" data-fancybox>
+            <span class="icon mr-3">
+              <span class="icon-play"></span>
+            </span>
+            <div class="caption">
+              <span class="meta">#4 / Forward</span>
+              <h3 class="m-0">Phillip Hobbs</h3>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div class="item">
+        <div class="video-media">
+          <img src="{% static 'images/img_2.jpg' %}" alt="Image" class="img-fluid">
+          <a href="https://vimeo.com/139714818" class="d-flex play-button align-items-center" data-fancybox>
+            <span class="icon mr-3">
+              <span class="icon-play"></span>
+            </span>
+            <div class="caption">
+              <span class="meta">#1 / GoalKeeper</span>
+              <h3 class="m-0">Garry Norris</h3>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div class="item">
+        <div class="video-media">
+          <img src="{% static 'images/img_3.jpg' %}" alt="Image" class="img-fluid">
+          <a href="https://vimeo.com/139714818" class="d-flex play-button align-items-center" data-fancybox>
+            <span class="icon mr-3">
+              <span class="icon-play"></span>
+            </span>
+            <div class="caption">
+              <span class="meta">#8 / Forward</span>
+              <h3 class="m-0">Romolu Harper</h3>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+{% endblock %}
