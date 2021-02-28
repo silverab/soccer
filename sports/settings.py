@@ -144,8 +144,8 @@ LOGOUT_REDIRECT_URL = 'home'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'mhas4908@gmail.com'
-EMAIL_HOST_PASSWORD = 'xhjlgdduzboshdwi'
+EMAIL_HOST_USER = 'blogsab79@gmail.com'
+EMAIL_HOST_PASSWORD = 'DEGREEisOver2020'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'Silverab Team <noreply@silverab.com>'
